@@ -30,9 +30,7 @@ public class PrimenumFind {
 				
 			}
 			
-		}
-		
-		
+		}		
 		sc.close();
 	}
 
