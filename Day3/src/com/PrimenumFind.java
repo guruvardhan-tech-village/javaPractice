@@ -14,17 +14,17 @@ public class PrimenumFind {
 			System.out.println("Enter value more than one");
 		}else {
 			for(int i=2;i<=in;i++) {
-				boolean isPrime=true;
+				boolean PrimeNum=true;
 				
 				for(int j=2;j<=Math.sqrt(i);j++) {
 					if(i%j==0) {
-						isPrime=false;
+						PrimeNum=false;
 						break;
 					}
 					
 				}
 				
-				if(isPrime) {
+				if(PrimeNum) {
 					System.out.print(i+" ");
 				}
 				
