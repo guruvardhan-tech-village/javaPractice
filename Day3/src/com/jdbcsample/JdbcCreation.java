@@ -2,6 +2,7 @@ package com.jdbcsample;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,10 +17,20 @@ public class JdbcCreation {
 		//Create the connection.
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/companydb","root","Guru@24748");
 		Statement st = con.createStatement();
-		String q="insert into Cars values(3,'BYD'),(4,'Maserati')";
-		int a = st.executeUpdate(q);
-		System.out.println(a);
-		st.execute(q);
+		
+		String q="select * from cars";
+		
+		ResultSet rs = st.executeQuery(q);
+		while(rs.next()) {
+			int id = rs.getInt("Id");
+			String name = rs.getString("name");
+			
+			System.out.println(id+ " "+name);
+		}
+		
+		
+//		int a = st.executeUpdate(q);
+//		System.out.println(a);
 		st.close();
 		con.close();
 		
