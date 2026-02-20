@@ -15,7 +15,7 @@ public class JdbcCreation {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		//Create the connection.
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/companydb","root","Guru@24748");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/companydb","root","password");
 		Statement st = con.createStatement();
 		
 		String q="select * from cars";

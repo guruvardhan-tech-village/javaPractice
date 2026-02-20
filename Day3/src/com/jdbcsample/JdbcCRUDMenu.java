@@ -16,7 +16,7 @@ public class JdbcCRUDMenu {
         Connection con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/companydb",
                 "root",
-                "Guru@24748");
+                "password");
 
         System.out.println("1. Create");
         System.out.println("2. Update");

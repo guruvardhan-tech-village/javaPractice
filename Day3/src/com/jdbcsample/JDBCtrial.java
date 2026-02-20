@@ -16,7 +16,7 @@ public class JDBCtrial {
 	    Connection con = DriverManager.getConnection(
 	            "jdbc:mysql://localhost:3306/companydb",
 	            "root",
-	            "Guru@24748");
+	            "password");
 	
 	    
 	    System.out.println("1. Insert");
