@@ -40,7 +40,7 @@ class PalindromeMethods{
 public class PalindromeNum {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		Scanner sc= new Scanner(System.in);
 		
 		System.out.println("Enter more than 2 digit number to check palindrome:");
@@ -50,7 +50,7 @@ public class PalindromeNum {
 		obj1.mathPalindrome(num);
 		obj1.stringPalindrome(num);
 		
-
+		sc.close();
 	}
 
 }
