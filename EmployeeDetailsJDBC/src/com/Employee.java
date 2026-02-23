@@ -12,6 +12,9 @@ public class Employee {
         this.name=name;
         this.salary=salary;
     }
+
+    public Employee() {
+    }
     public int getId(){
         return id;
     }
