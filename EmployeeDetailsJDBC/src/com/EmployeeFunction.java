@@ -32,6 +32,7 @@ public class EmployeeFunction {
 
     public void readEmp() {
         String sql = "SELECT id, name, department, salary FROM employees";
+        boolean hasData = false;
         try (Connection con = EmployeeJDBC.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -41,6 +42,9 @@ public class EmployeeFunction {
                 String dept = rs.getString("department");
                 double salary = rs.getDouble("salary");
                 System.out.println(new Employee(id, name, dept, salary));
+            }
+            if(!hasData){
+                System.out.println("No data inserted!");
             }
         } catch (Exception e) {
             e.printStackTrace();
