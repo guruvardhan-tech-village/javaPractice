@@ -78,7 +78,7 @@ public class Hybrid3{
 		double salary = 56000;	
 		
 		Payable emp1 = new FullTimeEmployee(id,name,salary);
-		Payable emp2 = new PartTimeEmployee(id, name, 20,80);
+		Payable emp2 = new PartTimeEmployee(id, name, 80,160);
 		
 		System.out.println("Realtime Payroll Processing:");
 		((Employee1)emp1).displayBasicInfo();
