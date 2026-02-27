@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/demo/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/generated/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/legacy/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/main/core-api/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/main/core-impl/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/main/protocol-impl/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/main/user-api/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/main/user-impl/java"/>
+	<classpathentry kind="src" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/test/java"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-j-9.5/mysql-connector-j-9.5/mysql-connector-j-9.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-j-9.5.0.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
