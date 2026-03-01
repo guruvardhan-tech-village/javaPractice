@@ -2,17 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
+
 package bankmanagement;
 
 /**
  *
  * @author guruv
  */
+
+
 import java.util.*;
 
-
 public class BankManagement {
-
     /**
      * @param args the command line arguments
      */
@@ -38,6 +39,7 @@ public class BankManagement {
                     bankOps.deposit(amount,accNo); 
                     bankOps.viewAccount(accNo);
                     break;
+                    
                 case 2:
                     System.out.println("Enter account number");
                     int accNo2 = sc.nextInt();
