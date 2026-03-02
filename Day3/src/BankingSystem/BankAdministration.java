@@ -94,7 +94,7 @@ public class BankAdministration {
 		boolean loginStatus = admn.adminLogin(name, pass);
 		
 		while(loginStatus) {
-			System.out.println("Login Successful ✅");
+			System.out.println("Login Successful");
 
 	        System.out.println("1. Create Bank Account");
 	        System.out.println("2. Delete Account");

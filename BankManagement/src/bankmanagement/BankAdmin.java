@@ -64,7 +64,7 @@ public class BankAdmin {
                 case 1:
                     System.out.print("Enter Customer ID: ");
                     int cid = sc.nextInt();
-                    sc.nextLine(); // consume newline
+                    sc.nextLine();
                     System.out.print("Enter Account Type (Savings/Current): ");
                     String type = sc.nextLine();
                     System.out.print("Enter Initial Balance: ");
