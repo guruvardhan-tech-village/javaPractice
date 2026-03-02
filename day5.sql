@@ -38,6 +38,8 @@ use EMployeeCRUD;
  
  insert into customers(name,email,password) values('Jack','jack@gmail.com','Jack@123'),
 	('John','john@gmail.com','John@123');
+    
+select * from customers;
  
  create table accounts(
 	Acc_NO int primary key auto_increment,
@@ -46,3 +48,28 @@ use EMployeeCRUD;
     Balance double default 0.0,
     foreign key(Cust_ID)references customers(CustID)
  );
+ 
+ select * from accounts;
+ 
+ CREATE TABLE Transactions(
+	TransID int primary key auto_increment,
+    ACC_No int,
+    TransType varchar(20), -- 'Deposit', 'Withdrawl','Transfer'
+    Amount double,
+    TransDate timestamp default current_timestamp,
+    foreign key(ACC_No) references accounts(Acc_NO)
+ );
+ 
+ select * from transactions;
+ 
+ create database AdminDatabase;
+ 
+ create table AdminDetails(
+ AdminID INT PRIMARY KEY auto_increment,
+ Name varchar(30) not null,
+ Email varchar(30),
+ Password varchar(20) not null);
+ 
+ 
+ 
+ 
