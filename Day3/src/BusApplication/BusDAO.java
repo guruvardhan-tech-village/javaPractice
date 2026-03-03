@@ -113,6 +113,30 @@ public class BusDAO {
 	    }
 	}
 	
+	public void showYourTickets(int custid) throws SQLException, ClassNotFoundException {
+		try(Connection con = BusJDBC.getConnection()){
+			String query = "Select * from Bookings where CustID=?";
+			PreparedStatement psq = con.prepareStatement(query);
+			psq.setInt(1, custid);
+			
+			ResultSet rs = psq.executeQuery();
+			boolean f = false;
+			System.out.println("CustID | BusID | Source | Destination | Payment");
+			while(rs.next()) {
+				f=true;
+	
+				int busNum=rs.getInt("BusID");
+				String sourceplace = rs.getString("SourcePlace");
+				String destin=rs.getString("Destination");
+				String paystat="Not Paid";
+				System.out.printf("%-2d | %-2d  | %-5s | %-5s | %-5s%n",custid,busNum,sourceplace,destin,paystat);
+			}
+			if(!f) {
+				System.out.println("You haven't Booked yet ");
+			}
+		}
+	}
+	
 	public void cancelTicket(int bookingID, int custID)
 	        throws ClassNotFoundException {
 
@@ -136,5 +160,36 @@ public class BusDAO {
 	    } catch(SQLException e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	public boolean busCheck(String source,String dest) throws ClassNotFoundException, SQLException {
+		try(Connection con = BusJDBC.getConnection()){
+			String qx = "SELECT * FROM BusDetails where Source=? and Destination=?";
+			PreparedStatement psx = con.prepareStatement(qx);
+			psx.setString(1, source);
+			psx.setString(2, dest);
+			
+			boolean found = false;
+			
+			ResultSet rsx = psx.executeQuery();
+			
+			System.out.println("BusID | BusNo | BusName | Source | Destination");
+			while(rsx.next()) {
+				found = true;
+				
+				int busid = rsx.getInt("BusID");
+				String busNum=rsx.getString("BusNo");
+				String busname = rsx.getString("BusName");
+				String sourceplace = rsx.getString("Source");
+				String destin=rsx.getString("Destination");
+				System.out.printf("%-2d | %-10s | %-5s | %-5s | %-5s ",busid,busNum,busname,sourceplace,destin);
+			}
+			if(!found) {
+				System.out.println("Sorry! No Buses for your route");
+			}
+			
+			return found;
+			
+		}
 	}
 }

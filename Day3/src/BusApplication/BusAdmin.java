@@ -26,12 +26,14 @@ public class BusAdmin {
 	}
 	
 	
-	public void addBus(String bname,String busno) throws ClassNotFoundException, SQLException {
+	public void addBus(String bname,String busno,String source,String dest) throws ClassNotFoundException, SQLException {
 		try(Connection con = BusJDBC.getConnection()){
-			String q1= "INSERT INTO BusDetails (BusName,BusNo) VALUES(?,?)";
+			String q1= "INSERT INTO BusDetails (BusName,BusNo,Source,Destination) VALUES(?,?,?,?)";
 			PreparedStatement ps1 = con.prepareStatement(q1);
 			ps1.setString(1, bname);
 			ps1.setString(2, busno);
+			ps1.setString(3, source);
+			ps1.setString(4, dest);
 			
 			ps1.executeUpdate();
 			
@@ -58,8 +60,7 @@ public class BusAdmin {
 			}
 			
 		}
-	}
-	
+	}	
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
@@ -84,8 +85,12 @@ public class BusAdmin {
 				String bname = sc.nextLine();
 				System.out.println("Enter the Bus Registration number (ex:KA06HP2285)");
 				String bNo1 = sc.nextLine();
+				System.out.println("Enter source");
+				String sr=sc.nextLine();
+				System.out.println("Enter Destination");
+				String dst=sc.nextLine();
 				
-				badmin.addBus(bname, bNo1);
+				badmin.addBus(bname, bNo1,sr,dst);
 				
 			}else if(ch==2) {
 				System.out.println("To Delete Bus details");

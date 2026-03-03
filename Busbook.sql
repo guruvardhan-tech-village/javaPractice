@@ -29,12 +29,18 @@ create table BusDetails(
 	BusNo varchar(20) unique,
 	BusName varchar(20) not null
 );
+ALTER TABLE busdetails
+add column Source varchar(30);
+ALTER TABLE busdetails
+add column Destination varchar(30);
+select * from busdetails;
 
+update busdetails set Source='Bangalore',
+destination='Mysore' where BusID=1;
 SELECT * FROM Busdetails;
 
 create table Bookings(
 	CustID int,
-    Name varchar(30),
     SourcePlace varchar(30),
     Destination varchar(30),
     Fare double,

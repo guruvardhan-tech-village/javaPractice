@@ -57,6 +57,7 @@ public class BusApp {
 
                             System.out.println("1. Book Ticket");
                             System.out.println("2. Cancel Ticket");
+                            System.out.println("4. View Your Tickets");
                             System.out.println("3. Logout");
 
                             int userChoice = sc.nextInt();
@@ -64,17 +65,21 @@ public class BusApp {
 
                             if(userChoice == 1) {
 
-                                System.out.println("Enter BusID:");
-                                int busID = sc.nextInt();
-                                sc.nextLine();
-
                                 System.out.println("Enter Source:");
                                 String source = sc.nextLine();
 
                                 System.out.println("Enter Destination:");
                                 String dest = sc.nextLine();
-
-                                dao.bookTickets(custId, busID, source, dest);
+                                boolean available=dao.busCheck(source, dest);
+                                
+                                if(available) {
+                                	System.out.println("Enter BusID:");
+                                    int busID = sc.nextInt();
+                                    sc.nextLine();
+                                    dao.bookTickets(custId, busID, source, dest);
+                                }else {
+                                	System.out.println("Sorry cannot proceed!");
+                                }
 
                             } 
                             else if(userChoice == 2) {
@@ -89,7 +94,10 @@ public class BusApp {
                             else if(userChoice == 3) {
                                 System.out.println("Logged out!");
                                 break;
-                            } 
+                            }
+                            else if(userChoice==4) {
+                            	dao.showYourTickets(custId);
+                            }
                             else {
                                 System.out.println("Invalid Option!");
                             }
