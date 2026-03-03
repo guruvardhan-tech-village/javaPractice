@@ -1,3 +1,3 @@
-module Day3 {
+module LeetCodeProblems {
 	requires java.sql;
 }
