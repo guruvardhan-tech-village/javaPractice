@@ -48,7 +48,7 @@ public class BusApp {
 
                         System.out.println("Login Successful!");
 
-                        // 🔥 After login menu
+                        //After login menu
                         System.out.println("Enter Your Customer ID:");
                         int custId = sc.nextInt();
                         sc.nextLine();
@@ -101,7 +101,7 @@ public class BusApp {
                     break;
 
                 case 3:
-                    System.out.println("Thank You!");
+                    System.out.println("Thank You for using GBUS!");
                     sc.close();
                     return;
 

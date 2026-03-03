@@ -47,4 +47,11 @@ ADD column BusID int,
 add foreign key (BusID)
 references BusDetails(BusID);
 
+ALTER TABLE bookings
+add column BookID int primary key auto_increment first;
+ALTER TABLE Bookings
+DROP COLUMN Name;
+
+select * from Bookings;
+
 

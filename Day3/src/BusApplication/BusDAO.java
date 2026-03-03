@@ -21,7 +21,7 @@ public class BusDAO {
 				ResultSet rs = ps1.getGeneratedKeys();
 				if(rs.next()) {
 					int custID=rs.getInt(1);
-					System.out.println("Account created! with ID"+custID);
+					System.out.println("Account created! with CustomerID: "+custID);
 				}
 				
 			}			
@@ -88,12 +88,12 @@ public class BusDAO {
 	
 	public void showBookingDetails(int bookingID, Connection con) throws SQLException {
 
-	    String query = "SELECT b.BookingID, c.Name, d.BusName, d.BusNo, " +
+	    String query = "SELECT b.BookID, c.Name, d.BusName, d.BusNo, " +
 	                   "b.SourcePlace, b.Destination, b.PayStatus " +
 	                   "FROM Bookings b " +
-	                   "JOIN BusCostomers c ON b.CustID = c.CustomerID " +
+	                   "JOIN BusCostomers c ON b.CustID = c.CustID " +
 	                   "JOIN BusDetails d ON b.BusID = d.BusID " +
-	                   "WHERE b.BookingID = ?";
+	                   "WHERE b.BookID = ?";
 
 	    PreparedStatement ps = con.prepareStatement(query);
 	    ps.setInt(1, bookingID);
@@ -103,7 +103,7 @@ public class BusDAO {
 	    if(rs.next()) {
 
 	        System.out.println("------ Booking Details ------");
-	        System.out.println("Booking ID : " + rs.getInt("BookingID"));
+	        System.out.println("Booking ID : " + rs.getInt("BookID"));
 	        System.out.println("Customer   : " + rs.getString("Name"));
 	        System.out.println("Bus Name   : " + rs.getString("BusName"));
 	        System.out.println("Bus No     : " + rs.getString("BusNo"));
@@ -118,7 +118,7 @@ public class BusDAO {
 
 	    try(Connection con = BusJDBC.getConnection()) {
 
-	        String q = "DELETE FROM Bookings WHERE BookingID = ? AND CustID = ?";
+	        String q = "DELETE FROM Bookings WHERE BookID = ? AND CustID = ?";
 
 	        PreparedStatement ps = con.prepareStatement(q);
 
