@@ -5,6 +5,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="Day3/src"/>
 	<classpathentry kind="src" path="EmployeeDetailsJDBC/src"/>
 	<classpathentry kind="src" path="JavaApplication1/lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/build/java"/>
@@ -19,6 +20,8 @@
 	<classpathentry kind="src" path="JavaApplication1/lib/mysql-connector-j-9.5/mysql-connector-j-9.5/src/test/java"/>
 	<classpathentry kind="src" path="JavaApplication1/src"/>
 	<classpathentry kind="src" path="SimplePrograms/src"/>
+=======
+>>>>>>> f00cac1d2236877bef39e00b81072e7e362e9487
 	<classpathentry kind="lib" path="JavaApplication1/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
 	<classpathentry kind="lib" path="JavaApplication1/lib/mysql-connector-j-9.5/mysql-connector-j-9.5/mysql-connector-j-9.5.0.jar"/>
 	<classpathentry kind="lib" path="JavaApplication1/lib/mysql-connector-j-9.5.0.jar"/>
