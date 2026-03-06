@@ -59,5 +59,5 @@ ALTER TABLE Bookings
 DROP COLUMN Name;
 
 select * from Bookings;
-
-
+describe bookings;
+describe buscostomers;

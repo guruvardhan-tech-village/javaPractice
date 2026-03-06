@@ -61,7 +61,50 @@ public class BusAdmin {
 			
 		}
 	}
-	
+	public void showBookingDetails(int bookingID, Connection con) throws SQLException {
+
+	    String query = "SELECT b.BookID, c.Name, d.BusName, d.BusNo, " +
+	                   "b.SourcePlace, b.Destination, b.PayStatus " +
+	                   "FROM Bookings b " +
+	                   "JOIN BusCostomers c ON b.CustID = c.CustID " +
+	                   "JOIN BusDetails d ON b.BusID = d.BusID " +
+	                   "WHERE b.BookID = ?";
+
+	    PreparedStatement ps = con.prepareStatement(query);
+	    ps.setInt(1, bookingID);
+
+	    ResultSet rs = ps.executeQuery();
+
+	    if(rs.next()) {
+
+	        System.out.println("------ Booking Details ------");
+	        System.out.println("Booking ID : " + rs.getInt("BookID"));
+	        System.out.println("Customer   : " + rs.getString("Name"));
+	        System.out.println("Bus Name   : " + rs.getString("BusName"));
+	        System.out.println("Bus No     : " + rs.getString("BusNo"));
+	        System.out.println("From       : " + rs.getString("SourcePlace"));
+	        System.out.println("To         : " + rs.getString("Destination"));
+	        System.out.println("Payment    : " + rs.getString("PayStatus"));
+	    }
+	}
+        
+        public void updateBookings(String source,String dest,double fare) throws ClassNotFoundException, SQLException{
+            try(Connection con = BusJDBC.getConnection()){
+                String upq = "update Bookings set fare=? where SourcePlace=? and Destination=?";
+                PreparedStatement ups = con.prepareStatement(upq);
+                ups.setDouble(1,fare);
+                ups.setString(2, source);
+                ups.setString(3, dest);
+                
+                int rows = ups.executeUpdate();
+                if(rows>0){
+                    System.out.println(rows +"Updated");
+                            
+                }else{
+                    System.out.println("Something wrong");
+                }
+            }
+        }
 	
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
