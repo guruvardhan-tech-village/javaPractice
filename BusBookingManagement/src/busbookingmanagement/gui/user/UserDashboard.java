@@ -43,7 +43,6 @@ public class UserDashboard extends javax.swing.JFrame {
         formPanel = new javax.swing.JPanel();
         bookTicket = new javax.swing.JButton();
         viewTicket = new javax.swing.JButton();
-        cancelTicket = new javax.swing.JButton();
         logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,18 +84,19 @@ public class UserDashboard extends javax.swing.JFrame {
         formPanel.setPreferredSize(new java.awt.Dimension(350, 200));
         formPanel.setLayout(new java.awt.GridLayout(6, 2, 10, 10));
 
+        bookTicket.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bookTicket.setForeground(new java.awt.Color(255, 102, 102));
         bookTicket.setText("BookTicket");
         bookTicket.addActionListener(this::bookTicketActionPerformed);
         formPanel.add(bookTicket);
 
+        viewTicket.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        viewTicket.setForeground(new java.awt.Color(255, 102, 102));
         viewTicket.setText("ViewTicket");
         viewTicket.addActionListener(this::viewTicketActionPerformed);
         formPanel.add(viewTicket);
 
-        cancelTicket.setText("CancelTicket");
-        cancelTicket.addActionListener(this::cancelTicketActionPerformed);
-        formPanel.add(cancelTicket);
-
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         logout.setText("LogOut");
         logout.addActionListener(this::logoutActionPerformed);
         formPanel.add(logout);
@@ -138,10 +138,6 @@ public class UserDashboard extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_viewTicketActionPerformed
-
-    private void cancelTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTicketActionPerformed
-       
-    }//GEN-LAST:event_cancelTicketActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
@@ -191,7 +187,6 @@ public class UserDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
     private javax.swing.JButton bookTicket;
-    private javax.swing.JButton cancelTicket;
     private javax.swing.JPanel centerPanel;
     private javax.swing.JLabel footerContactlbl;
     private javax.swing.JPanel footerPanel;

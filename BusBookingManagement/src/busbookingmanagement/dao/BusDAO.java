@@ -211,7 +211,7 @@ public class BusDAO {
 
             Connection con = BusJDBC.getConnection();
 
-            String query = "INSERT INTO BookingDetails (CustID,BusID,Source,Destination) VALUES (?,?,?,?)";
+            String query = "INSERT INTO Bookings (CustID,BusID,SourcePlace,Destination) VALUES (?,?,?,?)";
 
             PreparedStatement ps = con.prepareStatement(query);
 
