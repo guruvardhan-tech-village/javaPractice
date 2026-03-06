@@ -2,29 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package StudentGUI;
+package busbookingmanagement.gui.admin;
 
 /**
  *
  * @author guruv
  */
-public class ShoppingCarGUI extends javax.swing.JFrame {
+public class UpdateTickets extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ShoppingCarGUI.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UpdateTickets.class.getName());
 
     /**
-     * Creates new form ShoppingCarGUI
+     * Creates new form UpdateTickets
      */
-    
-    private JTable carTable;
-    private DefaultTableModel tabelModel;
-    private JLable grandTotalLable;
-    private double runningTotal =0.0;
-    public ShoppingCarGUI() {
+    public UpdateTickets() {
         initComponents();
-        setTitle("Shopping car view");
-        setSize(500,400);
-        setDefaultCloseOperation()
     }
 
     /**
@@ -74,7 +66,7 @@ public class ShoppingCarGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ShoppingCarGUI().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new UpdateTickets().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

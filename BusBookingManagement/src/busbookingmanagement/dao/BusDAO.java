@@ -1,5 +1,6 @@
-package busbookingmanagement;
+package busbookingmanagement.dao;
 
+import busbookingmanagement.util.BusJDBC;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +35,7 @@ public class BusDAO {
 			
 		}
 	}
-	
-	public boolean userLogin(String mail,String pass) throws ClassNotFoundException, SQLException {
+        public boolean userLogin1(String mail,String pass) throws ClassNotFoundException, SQLException {
 		try(Connection con = BusJDBC.getConnection()){
 			String q2= "Select * from BusCostomers where Email=? AND Password=?";
 			PreparedStatement ps2 = con.prepareStatement(q2);
@@ -50,7 +50,22 @@ public class BusDAO {
 			}
 		}
 	}
-	public void bookTickets(int custId,int busID,String source,String dest) throws ClassNotFoundException {
+	
+	public ResultSet userLogin(String email,String pass) throws Exception{
+
+            Connection con = BusJDBC.getConnection();
+
+            String query = "SELECT * FROM BusCostomers WHERE Email=? AND Password=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1,email);
+            ps.setString(2,pass);
+
+            return ps.executeQuery();
+        }
+        
+	public void bookTickets1(int custId,int busID,String source,String dest) throws ClassNotFoundException {
 
 	    try(Connection con = BusJDBC.getConnection()) {
 
@@ -192,4 +207,48 @@ public class BusDAO {
 			
 		}
 	}
+        public void bookTicket(int custId,int busId,String source,String dest) throws Exception{
+
+            Connection con = BusJDBC.getConnection();
+
+            String query = "INSERT INTO BookingDetails (CustID,BusID,Source,Destination) VALUES (?,?,?,?)";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1,custId);
+            ps.setInt(2,busId);
+            ps.setString(3,source);
+            ps.setString(4,dest);
+
+            ps.executeUpdate();
+
+        }
+        
+        public ResultSet getAllBuses() throws Exception {
+
+            Connection con = BusJDBC.getConnection();
+
+            String query = "SELECT BusID, BusNo, BusName, Source, Destination FROM BusDetails";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            return ps.executeQuery();
+        }
+        
+        public ResultSet getUserTickets(int custId) throws Exception{
+
+            Connection con = BusJDBC.getConnection();
+
+            String query =
+                "SELECT b.BookID, d.BusName, d.BusNo, b.SourcePlace, b.Destination, b.PayStatus " +
+                "FROM Bookings b " +
+                "JOIN BusDetails d ON b.BusID = d.BusID " +
+                "WHERE b.CustID = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1,custId);
+
+            return ps.executeQuery();
+        }
 }

@@ -26,6 +26,15 @@ use EMployeeCRUD;
  
  select * from attendance;
  
+ create table Employees  (
+	ID int primary key auto_increment,
+    EmpName varchar (30),
+    Dept varchar(20),
+    Salary double 
+ );
+ 
+ alter table employees add column location varchar (20);
+ select * from employees;
  create database customerManagement;
  use customerManagement;
  
@@ -35,6 +44,19 @@ use EMployeeCRUD;
     email varchar(30) unique,
     password varchar(20) not null
  );
+ 
+ INSERT INTO Employees (EmpName, Dept, Salary) VALUES 
+('Guru Prasad', 'Development', 75000.00),
+('Anjali Rao', 'Design', 68000.00),
+('Rahul Sharma', 'Marketing', 55000.00),
+('Sneha Kapoor', 'Development', 72000.00),
+('Vikram Singh', 'HR', 60000.00);
+
+UPDATE Employees SET Location = 'Bengaluru' WHERE ID = 1;
+UPDATE Employees SET Location = 'Mumbai' WHERE ID = 2;
+UPDATE Employees SET Location = 'Delhi' WHERE ID = 3;
+UPDATE Employees SET Location = 'Chennai' WHERE ID = 4;
+UPDATE Employees SET Location = 'Hyderabad' WHERE ID = 5;
  
  insert into customers(name,email,password) values('Jack','jack@gmail.com','Jack@123'),
 	('John','john@gmail.com','John@123');
