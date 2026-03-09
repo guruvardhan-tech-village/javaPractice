@@ -4,6 +4,11 @@
  */
 package busbookingmanagement.gui.admin;
 
+
+import javax.swing.JOptionPane;
+import busbookingmanagement.dao.BusAdmin;
+import java.sql.SQLException;
+
 /**
  *
  * @author guruv
@@ -28,21 +33,206 @@ public class AddBus extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        toppanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        middlepanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        busnotxt = new javax.swing.JTextField();
+        busnametxt = new javax.swing.JTextField();
+        fromtxt = new javax.swing.JTextField();
+        totxt = new javax.swing.JTextField();
+        insertbtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        footerpanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        toppanel.setBackground(new java.awt.Color(153, 204, 255));
+        toppanel.setPreferredSize(new java.awt.Dimension(412, 70));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Add BUS");
+
+        javax.swing.GroupLayout toppanelLayout = new javax.swing.GroupLayout(toppanel);
+        toppanel.setLayout(toppanelLayout);
+        toppanelLayout.setHorizontalGroup(
+            toppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toppanelLayout.createSequentialGroup()
+                .addContainerGap(246, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(236, 236, 236))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        toppanelLayout.setVerticalGroup(
+            toppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(toppanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
+
+        jPanel1.add(toppanel, java.awt.BorderLayout.NORTH);
+
+        middlepanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Bus Number");
+
+        jLabel2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Bus Name");
+
+        jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("From");
+
+        jLabel4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("To");
+
+        insertbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        insertbtn.setText("Insert");
+        insertbtn.addActionListener(this::insertbtnActionPerformed);
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Clear");
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setText("Dashboard");
+
+        javax.swing.GroupLayout middlepanelLayout = new javax.swing.GroupLayout(middlepanel);
+        middlepanel.setLayout(middlepanelLayout);
+        middlepanelLayout.setHorizontalGroup(
+            middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlepanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(middlepanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(busnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(middlepanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(middlepanelLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fromtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(middlepanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(busnametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(238, 238, 238))
+            .addGroup(middlepanelLayout.createSequentialGroup()
+                .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(middlepanelLayout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(insertbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(middlepanelLayout.createSequentialGroup()
+                        .addGap(327, 327, 327)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
+
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {busnametxt, busnotxt, fromtxt, totxt});
+
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {insertbtn, jButton1, jButton2});
+
+        middlepanelLayout.setVerticalGroup(
+            middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlepanelLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(busnametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(fromtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(totxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(insertbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(27, 27, 27)
+                .addComponent(jButton2)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
+
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {busnametxt, busnotxt, fromtxt, totxt});
+
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {insertbtn, jButton1, jButton2});
+
+        jPanel1.add(middlepanel, java.awt.BorderLayout.CENTER);
+
+        footerpanel.setBackground(new java.awt.Color(153, 204, 255));
+        footerpanel.setPreferredSize(new java.awt.Dimension(414, 70));
+
+        javax.swing.GroupLayout footerpanelLayout = new javax.swing.GroupLayout(footerpanel);
+        footerpanel.setLayout(footerpanelLayout);
+        footerpanelLayout.setHorizontalGroup(
+            footerpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 767, Short.MAX_VALUE)
+        );
+        footerpanelLayout.setVerticalGroup(
+            footerpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(footerpanel, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void insertbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertbtnActionPerformed
+        // TODO add your handling code here:
+        String busno = busnotxt.getText();
+        String busname = busnametxt.getText();
+        String from = fromtxt.getText();
+        String too = totxt.getText();
+        
+        if(busno.isEmpty() || busname.isEmpty() || from.isEmpty() || too.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please fill all fields");
+        }
+        BusAdmin admin = new BusAdmin();
+        
+        try {
+            admin.addBus(busname, busno, from, too);
+            JOptionPane.showMessageDialog(this,"Bus Added");
+        } catch (ClassNotFoundException ex) {
+            System.getLogger(AddBus.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        } catch (SQLException ex) {
+            System.getLogger(AddBus.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }//GEN-LAST:event_insertbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +260,21 @@ public class AddBus extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField busnametxt;
+    private javax.swing.JTextField busnotxt;
+    private javax.swing.JPanel footerpanel;
+    private javax.swing.JTextField fromtxt;
+    private javax.swing.JButton insertbtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel middlepanel;
+    private javax.swing.JPanel toppanel;
+    private javax.swing.JTextField totxt;
     // End of variables declaration//GEN-END:variables
 }

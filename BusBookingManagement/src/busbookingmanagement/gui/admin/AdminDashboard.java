@@ -4,6 +4,11 @@
  */
 package busbookingmanagement.gui.admin;
 
+import busbookingmanagement.gui.admin.BusDetails;
+import busbookingmanagement.gui.user.LoginFrame;
+import busbookingmanagement.util.Session;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author guruv
@@ -17,6 +22,7 @@ public class AdminDashboard extends javax.swing.JFrame {
      */
     public AdminDashboard() {
         initComponents();
+         welcomelbl.setText("Welcome " + Session.currentUserName);
     }
 
     /**
@@ -27,22 +33,121 @@ public class AdminDashboard extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        welcomelbl = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        butDetailbtn = new javax.swing.JButton();
+        logoutbtn = new javax.swing.JButton();
+        ticketsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(100, 70));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        welcomelbl.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        welcomelbl.setForeground(new java.awt.Color(0, 0, 153));
+        welcomelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomelbl.setText("Welcome Admin");
+        jPanel2.add(welcomelbl, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.NORTH);
+
+        jPanel3.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(720, 70));
+        jPanel1.add(jPanel3, java.awt.BorderLayout.SOUTH);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 102, 102), new java.awt.Color(153, 153, 255), new java.awt.Color(153, 153, 255), new java.awt.Color(255, 102, 102)));
+        jPanel5.setPreferredSize(new java.awt.Dimension(380, 300));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        butDetailbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        butDetailbtn.setForeground(new java.awt.Color(102, 0, 102));
+        butDetailbtn.setText("Bus Details");
+        butDetailbtn.setMargin(new java.awt.Insets(3, 14, 3, 14));
+        butDetailbtn.setPreferredSize(new java.awt.Dimension(160, 40));
+        butDetailbtn.addActionListener(this::butDetailbtnActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel5.add(butDetailbtn, gridBagConstraints);
+
+        logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        logoutbtn.setForeground(new java.awt.Color(255, 51, 51));
+        logoutbtn.setText("LogOut");
+        logoutbtn.setPreferredSize(new java.awt.Dimension(160, 40));
+        logoutbtn.addActionListener(this::logoutbtnActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel5.add(logoutbtn, gridBagConstraints);
+
+        ticketsBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ticketsBtn.setForeground(new java.awt.Color(102, 0, 102));
+        ticketsBtn.setText("Check Tickets");
+        ticketsBtn.setPreferredSize(new java.awt.Dimension(160, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel5.add(ticketsBtn, gridBagConstraints);
+
+        jPanel4.add(jPanel5, new java.awt.GridBagConstraints());
+
+        jPanel1.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void butDetailbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butDetailbtnActionPerformed
+        // TODO add your handling code here:
+        new BusDetails().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_butDetailbtnActionPerformed
+
+    private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(
+        this,
+        "Are you sure you want to logout?",
+        "Logout",
+        JOptionPane.YES_NO_OPTION
+        );
+
+        if(choice == JOptionPane.YES_OPTION){
+            
+            Session.currentAdminId = 0;
+            Session.currentUserName = null;
+            
+            new AdminLogin().setVisible(true);
+            dispose();
+
+        }
+    }//GEN-LAST:event_logoutbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +175,14 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butDetailbtn;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JButton logoutbtn;
+    private javax.swing.JButton ticketsBtn;
+    private javax.swing.JLabel welcomelbl;
     // End of variables declaration//GEN-END:variables
 }

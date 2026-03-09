@@ -25,6 +25,19 @@ public class BusAdmin {
 			}
 		}
 	}
+        public ResultSet adminLoginframe(String email,String pass) throws Exception{
+
+            Connection con = BusJDBC.getConnection();
+
+            String query = "SELECT * FROM BusAdmin WHERE Email=? AND Password=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1,email);
+            ps.setString(2,pass);
+
+            return ps.executeQuery();
+        }
 	
 	
 	public void addBus(String bname,String busno,String source,String dest) throws ClassNotFoundException, SQLException {

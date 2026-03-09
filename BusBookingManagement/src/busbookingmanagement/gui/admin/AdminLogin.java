@@ -4,6 +4,12 @@
  */
 package busbookingmanagement.gui.admin;
 
+import javax.swing.JOptionPane;
+import busbookingmanagement.dao.BusAdmin;
+import busbookingmanagement.gui.admin.AdminDashboard;
+import busbookingmanagement.util.Session;
+import java.sql.*;
+
 /**
  *
  * @author guruv
@@ -27,22 +33,165 @@ public class AdminLogin extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        mailtxt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        loginBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jPanel3.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(717, 70));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Welcome To Admin Console");
+        jPanel3.add(jLabel3, java.awt.BorderLayout.CENTER);
+
+        jLabel4.setText("Logo");
+        jLabel4.setPreferredSize(new java.awt.Dimension(60, 16));
+        jPanel3.add(jLabel4, java.awt.BorderLayout.LINE_START);
+
+        jPanel2.add(jPanel3, java.awt.BorderLayout.NORTH);
+
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(717, 70));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 716, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
+
+        jPanel2.add(jPanel4, java.awt.BorderLayout.SOUTH);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(204, 204, 255)), "Admin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 16), new java.awt.Color(51, 102, 255))); // NOI18N
+        jPanel6.setToolTipText("");
+        jPanel6.setPreferredSize(new java.awt.Dimension(450, 250));
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Email");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel6.add(jLabel1, gridBagConstraints);
+
+        mailtxt.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel6.add(mailtxt, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Password");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel6.add(jLabel2, gridBagConstraints);
+
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPasswordField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jPasswordField1.setPreferredSize(new java.awt.Dimension(150, 30));
+        jPasswordField1.addActionListener(this::jPasswordField1ActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel6.add(jPasswordField1, gridBagConstraints);
+
+        loginBtn.setBackground(new java.awt.Color(204, 204, 204));
+        loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        loginBtn.setForeground(new java.awt.Color(255, 51, 51));
+        loginBtn.setText("Login");
+        loginBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 102, 51), new java.awt.Color(255, 102, 51), new java.awt.Color(204, 204, 204), null));
+        loginBtn.setPreferredSize(new java.awt.Dimension(140, 40));
+        loginBtn.addActionListener(this::loginBtnActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.insets = new java.awt.Insets(16, 14, 16, 14);
+        jPanel6.add(loginBtn, gridBagConstraints);
+
+        jPanel5.add(jPanel6, new java.awt.GridBagConstraints());
+
+        jPanel2.add(jPanel5, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        // TODO add your handling code here:
+        String email = mailtxt.getText();
+        String pass = new String(jPasswordField1.getPassword());
+        if(email.isEmpty() || pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please fill all details");
+            return;
+        }
+        BusAdmin  admindao = new BusAdmin();
+        
+        try{
+            ResultSet rs = admindao.adminLoginframe(email, pass);
+            if(rs.next()){
+
+                Session.currentAdminId = rs.getInt("AdminId");
+                Session.currentAdminName = rs.getString("Name");
+
+                JOptionPane.showMessageDialog(this,"Login Successful");
+
+                new AdminDashboard().setVisible(true);
+                dispose();
+
+            }else{
+
+                JOptionPane.showMessageDialog(this,"Invalid Email or Password");
+
+            }
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +219,18 @@ public class AdminLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JTextField mailtxt;
     // End of variables declaration//GEN-END:variables
 }

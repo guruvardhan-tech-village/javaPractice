@@ -202,7 +202,6 @@ public class BusList extends javax.swing.JFrame {
     public void loadBusTable(){
 
         try{
-
             BusDAO dao = new BusDAO();
             ResultSet rs = dao.getAllBuses();
 

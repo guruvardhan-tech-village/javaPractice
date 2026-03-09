@@ -11,6 +11,8 @@ package busbookingmanagement.util;
 public class Session {
     public static int currentUserId;
     public static String currentUserName;
+    public static int currentAdminId;
+    public static String currentAdminName;
 }
 
 
