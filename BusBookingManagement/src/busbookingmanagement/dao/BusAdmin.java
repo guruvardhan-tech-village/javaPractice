@@ -104,7 +104,7 @@ public class BusAdmin {
         
         public void updateBookings(String source,String dest,double fare) throws ClassNotFoundException, SQLException{
             try(Connection con = BusJDBC.getConnection()){
-                String upq = "update Bookings set fare=? where SourcePlace=? and Destination=?";
+                String upq = "update Bookings set fare=?,P where SourcePlace=? and Destination=?";
                 PreparedStatement ups = con.prepareStatement(upq);
                 ups.setDouble(1,fare);
                 ups.setString(2, source);
