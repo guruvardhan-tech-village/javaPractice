@@ -106,6 +106,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         ticketsBtn.setForeground(new java.awt.Color(102, 0, 102));
         ticketsBtn.setText("Check Tickets");
         ticketsBtn.setPreferredSize(new java.awt.Dimension(160, 40));
+        ticketsBtn.addActionListener(this::ticketsBtnActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -148,6 +149,11 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_logoutbtnActionPerformed
+
+    private void ticketsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketsBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ticketsBtnActionPerformed
 
     /**
      * @param args the command line arguments

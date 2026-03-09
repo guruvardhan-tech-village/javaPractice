@@ -46,8 +46,8 @@ public class AddBus extends javax.swing.JFrame {
         fromtxt = new javax.swing.JTextField();
         totxt = new javax.swing.JTextField();
         insertbtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        clrbtn = new javax.swing.JButton();
+        backbtn = new javax.swing.JButton();
         footerpanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,11 +106,13 @@ public class AddBus extends javax.swing.JFrame {
         insertbtn.setText("Insert");
         insertbtn.addActionListener(this::insertbtnActionPerformed);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Clear");
+        clrbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        clrbtn.setText("Clear");
+        clrbtn.addActionListener(this::clrbtnActionPerformed);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Dashboard");
+        backbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        backbtn.setText("Dashboard");
+        backbtn.addActionListener(this::backbtnActionPerformed);
 
         javax.swing.GroupLayout middlepanelLayout = new javax.swing.GroupLayout(middlepanel);
         middlepanel.setLayout(middlepanelLayout);
@@ -142,10 +144,10 @@ public class AddBus extends javax.swing.JFrame {
                         .addGap(221, 221, 221)
                         .addComponent(insertbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clrbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(middlepanelLayout.createSequentialGroup()
                         .addGap(327, 327, 327)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(backbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(203, Short.MAX_VALUE))
         );
 
@@ -153,7 +155,7 @@ public class AddBus extends javax.swing.JFrame {
 
         middlepanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {busnametxt, busnotxt, fromtxt, totxt});
 
-        middlepanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {insertbtn, jButton1, jButton2});
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {backbtn, clrbtn, insertbtn});
 
         middlepanelLayout.setVerticalGroup(
             middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,9 +179,9 @@ public class AddBus extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(middlepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(insertbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(clrbtn))
                 .addGap(27, 27, 27)
-                .addComponent(jButton2)
+                .addComponent(backbtn)
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -187,7 +189,7 @@ public class AddBus extends javax.swing.JFrame {
 
         middlepanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {busnametxt, busnotxt, fromtxt, totxt});
 
-        middlepanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {insertbtn, jButton1, jButton2});
+        middlepanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {backbtn, clrbtn, insertbtn});
 
         jPanel1.add(middlepanel, java.awt.BorderLayout.CENTER);
 
@@ -234,6 +236,22 @@ public class AddBus extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_insertbtnActionPerformed
 
+    private void clrbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clrbtnActionPerformed
+        // TODO add your handling code here:
+        busnotxt.setText("");
+        busnametxt.setText("");
+        fromtxt.setText("");
+        totxt.setText("");
+    }//GEN-LAST:event_clrbtnActionPerformed
+
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
+        // TODO add your handling code here:
+        new AdminDashboard().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backbtnActionPerformed
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -260,13 +278,13 @@ public class AddBus extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backbtn;
     private javax.swing.JTextField busnametxt;
     private javax.swing.JTextField busnotxt;
+    private javax.swing.JButton clrbtn;
     private javax.swing.JPanel footerpanel;
     private javax.swing.JTextField fromtxt;
     private javax.swing.JButton insertbtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
