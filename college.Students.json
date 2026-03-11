@@ -1,0 +1,90 @@
+[{
+  "_id": {
+    "$oid": "69aff39910263d5d8e7c2910"
+  },
+  "id": 1,
+  "name": "Rama",
+  "class": 10,
+  "age": 16
+},
+{
+  "_id": {
+    "$oid": "69aff39910263d5d8e7c2911"
+  },
+  "id": 2,
+  "name": "Shyam",
+  "class": 10,
+  "age": 16
+},
+{
+  "_id": {
+    "$oid": "69aff39910263d5d8e7c2912"
+  },
+  "id": 3,
+  "name": "Raghu",
+  "class": 10,
+  "age": 16
+},
+{
+  "_id": {
+    "$oid": "69b0f3d1a8e67026107c2911"
+  },
+  "id": 4,
+  "name": "David",
+  "age": 23,
+  "class": 10
+},
+{
+  "_id": {
+    "$oid": "69b0f3d1a8e67026107c2912"
+  },
+  "id": 5,
+  "name": "Eve",
+  "age": 20,
+  "class": 10
+},
+{
+  "_id": {
+    "$oid": "69b0f3d1a8e67026107c2913"
+  },
+  "id": 6,
+  "name": "Frank",
+  "age": 22,
+  "class": 10
+},
+{
+  "_id": {
+    "$oid": "69b0f3d1a8e67026107c2914"
+  },
+  "id": 7,
+  "name": "Grace",
+  "age": 21,
+  "class": 10
+},
+{
+  "_id": {
+    "$oid": "69b0f3d1a8e67026107c2915"
+  },
+  "id": 8,
+  "name": "Heidi",
+  "age": 23,
+  "class": 10
+},
+{
+  "_id": {
+    "$oid": "69b0f3d1a8e67026107c2916"
+  },
+  "id": 9,
+  "name": "Ivan",
+  "age": 20,
+  "class": 10
+},
+{
+  "_id": {
+    "$oid": "69b0f3d1a8e67026107c2917"
+  },
+  "id": 10,
+  "name": "Judy",
+  "age": 22,
+  "class": 10
+}]

@@ -1,0 +1,110 @@
+[{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c2907"
+  },
+  "id": 1,
+  "eng": 90,
+  "kannada": 95,
+  "maths": 78,
+  "science": 88,
+  "social": 91
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c2908"
+  },
+  "id": 2,
+  "eng": 88,
+  "kannada": 85,
+  "maths": 86,
+  "science": 94,
+  "social": 56
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c2909"
+  },
+  "id": 3,
+  "eng": 92,
+  "kannada": 90,
+  "maths": 80,
+  "science": 85,
+  "social": 89
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c290a"
+  },
+  "id": 4,
+  "eng": 85,
+  "kannada": 88,
+  "maths": 82,
+  "science": 90,
+  "social": 92
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c290b"
+  },
+  "id": 5,
+  "eng": 78,
+  "kannada": 82,
+  "maths": 88,
+  "science": 91,
+  "social": 87
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c290c"
+  },
+  "id": 6,
+  "eng": 91,
+  "kannada": 94,
+  "maths": 84,
+  "science": 89,
+  "social": 90
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c290d"
+  },
+  "id": 7,
+  "eng": 87,
+  "kannada": 80,
+  "maths": 90,
+  "science": 86,
+  "social": 88
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c290e"
+  },
+  "id": 8,
+  "eng": 89,
+  "kannada": 92,
+  "maths": 86,
+  "science": 88,
+  "social": 91
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c290f"
+  },
+  "id": 9,
+  "eng": 84,
+  "kannada": 85,
+  "maths": 82,
+  "science": 90,
+  "social": 89
+},
+{
+  "_id": {
+    "$oid": "69b0f2efa8e67026107c2910"
+  },
+  "id": 10,
+  "eng": 90,
+  "kannada": 88,
+  "maths": 88,
+  "science": 92,
+  "social": 87
+}]
