@@ -43,7 +43,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         butDetailbtn = new javax.swing.JButton();
         logoutbtn = new javax.swing.JButton();
-        ticketsBtn = new javax.swing.JButton();
+        checkticketsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,18 +102,18 @@ public class AdminDashboard extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel5.add(logoutbtn, gridBagConstraints);
 
-        ticketsBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ticketsBtn.setForeground(new java.awt.Color(102, 0, 102));
-        ticketsBtn.setText("Check Tickets");
-        ticketsBtn.setPreferredSize(new java.awt.Dimension(160, 40));
-        ticketsBtn.addActionListener(this::ticketsBtnActionPerformed);
+        checkticketsBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkticketsBtn.setForeground(new java.awt.Color(102, 0, 102));
+        checkticketsBtn.setText("Check Tickets");
+        checkticketsBtn.setPreferredSize(new java.awt.Dimension(160, 40));
+        checkticketsBtn.addActionListener(this::checkticketsBtnActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel5.add(ticketsBtn, gridBagConstraints);
+        jPanel5.add(checkticketsBtn, gridBagConstraints);
 
         jPanel4.add(jPanel5, new java.awt.GridBagConstraints());
 
@@ -150,10 +150,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logoutbtnActionPerformed
 
-    private void ticketsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketsBtnActionPerformed
+    private void checkticketsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkticketsBtnActionPerformed
         // TODO add your handling code here:
+        new UpdateTickets().setVisible(true);
+        dispose();
         
-    }//GEN-LAST:event_ticketsBtnActionPerformed
+    }//GEN-LAST:event_checkticketsBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,13 +184,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butDetailbtn;
+    private javax.swing.JButton checkticketsBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JButton logoutbtn;
-    private javax.swing.JButton ticketsBtn;
     private javax.swing.JLabel welcomelbl;
     // End of variables declaration//GEN-END:variables
 }

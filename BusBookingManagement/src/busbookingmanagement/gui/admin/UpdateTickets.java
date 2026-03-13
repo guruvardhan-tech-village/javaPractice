@@ -59,7 +59,7 @@ public class UpdateTickets extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("View Your Tickets");
+        jLabel2.setText("Admin View");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -120,11 +120,11 @@ public class UpdateTickets extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Booking ID", "Bus Name", "Bus Number", "From", "To", "Payment Status"
+                "Booking ID", "Bus Name", "Bus Number", "From", "To", "Payment Status", "CustomerId"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -240,7 +240,7 @@ public class UpdateTickets extends javax.swing.JFrame {
 
             BusAdmin dao = new BusAdmin();
 
-            dao.updateBookings(bookingId, Session.currentUserId);
+            dao.updateBookings(bookingId, Session.currentAdminId);
 
             JOptionPane.showMessageDialog(this,"Ticket Cancelled");
 
@@ -258,7 +258,7 @@ public class UpdateTickets extends javax.swing.JFrame {
 
             BusDAO dao = new BusDAO();
 
-            ResultSet rs = dao.getUserTickets(Session.currentUserId);
+            ResultSet rs = dao.getUserTickets();
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
@@ -266,7 +266,7 @@ public class UpdateTickets extends javax.swing.JFrame {
 
             while(rs.next()){
 
-                Object row[] = new Object[6];
+                Object row[] = new Object[7];
 
                 row[0] = rs.getInt("BookID");
                 row[1] = rs.getString("BusName");
@@ -274,6 +274,7 @@ public class UpdateTickets extends javax.swing.JFrame {
                 row[3] = rs.getString("SourcePlace");
                 row[4] = rs.getString("Destination");
                 row[5] = rs.getString("PayStatus");
+                row[6] = rs.getString("CustID");
 
                 model.addRow(row);
 

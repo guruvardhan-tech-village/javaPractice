@@ -1,0 +1,2 @@
+use college;
+show collections;

@@ -35,8 +35,12 @@ ALTER TABLE busdetails
 add column Destination varchar(30);
 select * from busdetails;
 
+insert into busdetails(BusNo,BusName,Source,Destination)values('KA04NH4444','Flexbus','Bengaluru','Mangaluru');
+
 update busdetails set Source='Bangalore',
 destination='Mysore' where BusID=1;
+
+alter table busdetails add column fare double;
 SELECT * FROM Busdetails;
 
 create table Bookings(
@@ -61,3 +65,4 @@ DROP COLUMN Name;
 select * from Bookings;
 describe bookings;
 describe buscostomers;
+
