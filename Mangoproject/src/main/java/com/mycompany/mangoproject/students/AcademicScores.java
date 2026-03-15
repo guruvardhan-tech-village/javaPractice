@@ -4,6 +4,8 @@
  */
 package com.mycompany.mangoproject.students;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author guruv
@@ -17,6 +19,7 @@ public class AcademicScores extends javax.swing.JFrame {
      */
     public AcademicScores() {
         initComponents();
+        loadResults();
     }
 
     /**
@@ -29,30 +32,38 @@ public class AcademicScores extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        resultTable = new javax.swing.JTable();
+        orderBtn = new javax.swing.JToggleButton();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Kannada", "English", "Mathematics", "Science", "Social", "Percentage", "Grade"
+                "ID", "Name", "Kannada", "English", "Mathematics", "Science", "Social", "Percentage", "Grade"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(resultTable);
+
+        orderBtn.setText("Asc | Desc");
+        orderBtn.addActionListener(this::orderBtnActionPerformed);
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(this::backBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,23 +71,141 @@ public class AcademicScores extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(orderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(orderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void orderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            var database = MongoConfig.getDatabase();
+            var collection = database.getCollection("results");
+
+            javax.swing.table.DefaultTableModel model =
+                    (javax.swing.table.DefaultTableModel) resultTable.getModel();
+
+            model.setRowCount(0);
+
+            var studentsCollection = database.getCollection("Students");
+
+            int order;
+
+            if(orderBtn.isSelected()){
+                order = -1; // Descending
+            }else{
+                order = 1;  // Ascending
+            }
+
+            var docs = collection.find()
+                    .sort(new org.bson.Document("percentage", order));
+
+            for(org.bson.Document doc : docs){
+
+                int id = doc.getInteger("id");
+
+                org.bson.Document student =
+                        studentsCollection.find(new org.bson.Document("id", id)).first();
+
+                String name = "";
+                if(student != null){
+                    name = student.getString("name");
+                }
+
+                int kannada = doc.getInteger("kannada");
+                int engl = doc.getInteger("eng");
+                int maths = doc.getInteger("maths");
+                int sci = doc.getInteger("science");
+                int soc = doc.getInteger("social");
+
+                Number percentNum = (Number) doc.get("percentage");
+                double percent = percentNum.doubleValue();
+                String grade = doc.getString("grade");
+
+                model.addRow(new Object[]{id,name,kannada,engl,maths,sci,soc,percent,grade});
+            }
+
+        }catch(Exception e){
+            javax.swing.JOptionPane.showMessageDialog(this,"Error "+e.getMessage());
+        }
+
+
+        
+    }//GEN-LAST:event_orderBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        new ViewStudents().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    private void loadResults(){
+         try{
+            var database = MongoConfig.getDatabase();
+            var resultsCollection = database.getCollection("results");
+            var studentsCollection = database.getCollection("Students");
+
+            javax.swing.table.DefaultTableModel model =
+                    (javax.swing.table.DefaultTableModel) resultTable.getModel();
+
+            model.setRowCount(0);
+
+            var docs = resultsCollection.find();
+
+            for(org.bson.Document doc : docs){
+
+                int id = doc.getInteger("id");
+
+                // find student name
+                org.bson.Document student =
+                        studentsCollection.find(new org.bson.Document("id", id)).first();
+
+                String name = "";
+
+                if(student != null){
+                    name = student.getString("name");
+                }
+
+                int kannada = doc.getInteger("kannada");
+                int engl = doc.getInteger("eng");
+                int maths = doc.getInteger("maths");
+                int sci = doc.getInteger("science");
+                int soc = doc.getInteger("social");
+
+                Number percentNum = (Number) doc.get("percentage");
+                double percent = percentNum.doubleValue();
+                String grade = doc.getString("grade");
+
+                model.addRow(new Object[]{id,name,kannada,engl,maths,sci,soc,percent,grade});
+            }
+
+         }catch(Exception e){
+             JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
+         }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -100,7 +229,9 @@ public class AcademicScores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JToggleButton orderBtn;
+    private javax.swing.JTable resultTable;
     // End of variables declaration//GEN-END:variables
 }
