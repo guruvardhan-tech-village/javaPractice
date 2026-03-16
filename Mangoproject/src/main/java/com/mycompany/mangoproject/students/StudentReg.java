@@ -226,6 +226,7 @@ public class StudentReg extends javax.swing.JFrame {
         txtid.setText("");
         txtage.setText("");
         txtbranch.setText("");
+        
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
