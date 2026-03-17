@@ -35,6 +35,7 @@ public class AcademicScores extends javax.swing.JFrame {
         resultTable = new javax.swing.JTable();
         orderBtn = new javax.swing.JToggleButton();
         backBtn = new javax.swing.JButton();
+        updateMarksbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,20 +66,25 @@ public class AcademicScores extends javax.swing.JFrame {
         backBtn.setText("Back");
         backBtn.addActionListener(this::backBtnActionPerformed);
 
+        updateMarksbtn.setText("Update");
+        updateMarksbtn.addActionListener(this::updateMarksbtnActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(52, 52, 52)
                 .addComponent(orderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                .addGap(124, 124, 124)
+                .addComponent(updateMarksbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                .addGap(109, 109, 109))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +94,8 @@ public class AcademicScores extends javax.swing.JFrame {
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateMarksbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
 
@@ -158,12 +165,82 @@ public class AcademicScores extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void updateMarksbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMarksbtnActionPerformed
+        // TODO add your handling code here:
+        int row = resultTable.getSelectedRow();
+
+        if (row == -1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        }
+        int id = (int) resultTable.getValueAt(row, 0);
+        int currentkannada = (int) resultTable.getValueAt(row, 2);
+        int currenteng =(int) resultTable.getValueAt(row, 3);
+        int currentmaths = (int) resultTable.getValueAt(row,4);
+        int currentsci = (int) resultTable.getValueAt(row, 5);
+        int currentsocial = (int) resultTable.getValueAt(row, 6);
+
+        try {
+            
+            int newkannada = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "Enter Marks for Kannada", currentkannada));
+            int neweng = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "Enter English Marks", currenteng));
+            int newmath = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "Enter Maths Marks", currentmaths));
+            int newsci = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "Enter Science Marks", currentsci));
+            int newsocial = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "Enter Social Marks", currentsocial));
+            
+            double percentage = (newkannada + neweng + newmath + newsci + newsocial) / 5.0;
+
+            String grade;
+
+            if(percentage >= 90)
+                grade = "A+";
+            else if(percentage >= 80)
+                grade = "A";
+            else if(percentage >= 70)
+                grade = "B";
+            else if(percentage >= 60)
+                grade = "C";
+            else if(percentage >= 50)
+                grade = "D";
+            else
+                grade = "Fail";
+
+            var database = MongoConfig.getDatabase();
+            var collection = database.getCollection("results");
+
+            org.bson.Document filter = new org.bson.Document("id", id);
+
+            org.bson.Document update = new org.bson.Document("$set",
+                    new org.bson.Document("kannada", newkannada)
+                            .append("eng", neweng)
+                            .append("maths", newmath)
+                            .append("science", newsci)
+                            .append("social", newsocial)
+                            .append("percentage", percentage)
+                            .append("grade", grade));
+
+            collection.updateOne(
+                    filter,
+                    update,
+                    new com.mongodb.client.model.UpdateOptions().upsert(true)
+            );
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Updated Successfully");
+
+            loadResults(); // refresh table
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_updateMarksbtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
     private void loadResults(){
          try{
+
             var database = MongoConfig.getDatabase();
             var resultsCollection = database.getCollection("results");
             var studentsCollection = database.getCollection("Students");
@@ -173,38 +250,43 @@ public class AcademicScores extends javax.swing.JFrame {
 
             model.setRowCount(0);
 
-            var docs = resultsCollection.find();
+            var students = studentsCollection.find();
 
-            for(org.bson.Document doc : docs){
+            for(org.bson.Document student : students){
 
-                int id = doc.getInteger("id");
+                int id = student.getInteger("id");
+                String name = student.getString("name");
 
-                // find student name
-                org.bson.Document student =
-                        studentsCollection.find(new org.bson.Document("id", id)).first();
+                org.bson.Document result =
+                        resultsCollection.find(new org.bson.Document("id", id)).first();
 
-                String name = "";
+                int kannada = 0;
+                int engl = 0;
+                int maths = 0;
+                int sci = 0;
+                int soc = 0;
+                double percent = 0;
+                String grade = "";
 
-                if(student != null){
-                    name = student.getString("name");
+                if(result != null){
+                    kannada = result.getInteger("kannada");
+                    engl = result.getInteger("eng");
+                    maths = result.getInteger("maths");
+                    sci = result.getInteger("science");
+                    soc = result.getInteger("social");
+
+                    Number percentNum = (Number) result.get("percentage");
+                    percent = percentNum.doubleValue();
+
+                    grade = result.getString("grade");
                 }
-
-                int kannada = doc.getInteger("kannada");
-                int engl = doc.getInteger("eng");
-                int maths = doc.getInteger("maths");
-                int sci = doc.getInteger("science");
-                int soc = doc.getInteger("social");
-
-                Number percentNum = (Number) doc.get("percentage");
-                double percent = percentNum.doubleValue();
-                String grade = doc.getString("grade");
 
                 model.addRow(new Object[]{id,name,kannada,engl,maths,sci,soc,percent,grade});
             }
 
-         }catch(Exception e){
-             JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
-         }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Error "+e.getMessage());
+        }
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -233,5 +315,6 @@ public class AcademicScores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton orderBtn;
     private javax.swing.JTable resultTable;
+    private javax.swing.JButton updateMarksbtn;
     // End of variables declaration//GEN-END:variables
 }

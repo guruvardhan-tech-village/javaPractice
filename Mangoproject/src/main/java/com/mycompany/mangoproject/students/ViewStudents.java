@@ -133,8 +133,10 @@ public class ViewStudents extends javax.swing.JFrame {
         try {
             var database = MongoConfig.getDatabase();
             var collection = database.getCollection("Students");
+            var collection1 = database.getCollection("results");
 
             collection.deleteOne(new org.bson.Document("id", id));
+            collection1.deleteOne(new org.bson.Document("id", id));
 
             javax.swing.JOptionPane.showMessageDialog(this, "Deleted Successfully");
 
@@ -158,14 +160,16 @@ public class ViewStudents extends javax.swing.JFrame {
 
         int id = (int) studentTable.getValueAt(row, 1);
         String currentName = studentTable.getValueAt(row, 2).toString();
-        int currentAge = (int) studentTable.getValueAt(row, 3);
-        String currentBranch = studentTable.getValueAt(row, 4).toString();
+        String currentGender = studentTable.getValueAt(row,3).toString();
+        int currentAge = (int) studentTable.getValueAt(row, 4);
+        String currentBranch = studentTable.getValueAt(row, 5).toString();
 
         try {
             
             String newName = javax.swing.JOptionPane.showInputDialog(this, "Enter Name", currentName);
             int newAge = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "Enter Age", currentAge));
             String newBranch = javax.swing.JOptionPane.showInputDialog(this, "Enter Branch", currentBranch);
+            String newgender = javax.swing.JOptionPane.showInputDialog(this, "Enter Gender", currentGender);
 
             var database = MongoConfig.getDatabase();
             var collection = database.getCollection("Students");
@@ -174,6 +178,7 @@ public class ViewStudents extends javax.swing.JFrame {
 
             org.bson.Document update = new org.bson.Document("$set",
                     new org.bson.Document("name", newName)
+                            .append("gender", newgender)
                             .append("age", newAge)
                             .append("branch", newBranch));
 
