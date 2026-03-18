@@ -133,10 +133,20 @@ public class ViewStudents extends javax.swing.JFrame {
         try {
             var database = MongoConfig.getDatabase();
             var collection = database.getCollection("Students");
-            var collection1 = database.getCollection("results");
+            var resultsCollection = database.getCollection("results");
 
             collection.deleteOne(new org.bson.Document("id", id));
-            collection1.deleteOne(new org.bson.Document("id", id));
+            
+            int choice = javax.swing.JOptionPane.showConfirmDialog(
+                this,
+                "Do you also want to delete this student's results?",
+                "Confirm Delete",
+                javax.swing.JOptionPane.YES_NO_OPTION
+            );
+
+            if (choice == javax.swing.JOptionPane.YES_OPTION) {
+                resultsCollection.deleteOne(new org.bson.Document("id", id));
+            }
 
             javax.swing.JOptionPane.showMessageDialog(this, "Deleted Successfully");
 

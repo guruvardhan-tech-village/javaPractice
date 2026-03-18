@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="searchTable.css">
+</head>
+<body>
+    <h2>Inventory Management</h2>
+    <div id="search-container">
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search...">
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ItemID</th>
+                    <th>ProductName</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#1001</td>
+                    <td>Pen</td>
+                    <td>Stationery</td>
+                    <td style="color: green; font-weight: bold;">In Stock</td>
+                    <td>$2.99</td>
+                </tr>
+                <tr>
+                    <td>#1002</td>
+                    <td>Pencil</td>
+                    <td>Stationery</td>
+                    <td style="color: red; font-weight: bold;">Out Of Stock</td>
+                    <td>$1.99</td>
+                </tr>
+                <tr>
+                    <td>#1003</td>
+                    <td>Eraser</td>
+                    <td>Stationery</td>
+                    <td style="color: red; font-weight: bold;">Out Of Stock</td>
+                    <td>$0.99</td>
+                </tr>
+                <tr>
+                    <td>#1004</td>
+                    <td>Notebook</td>
+                    <td>Stationery</td>
+                    <td style="color: green; font-weight: bold;">In Stock</td>
+                    <td>$5.99</td>
+                </tr>
+                <tr>
+                    <td>#1005</td>
+                    <td>Stapler</td>
+                    <td>Office Supplies</td>
+                    <td style="color: green; font-weight: bold;">In Stock</td>
+                    <td>$7.99</td>
+                </tr>
+                <tr>
+                    <td>#1006</td>
+                    <td>Paper Clips</td>
+                    <td>Office Supplies</td>
+                    <td style="color: red; font-weight: bold;">Out Of Stock</td>
+                    <td>$0.99</td>
+                </tr>
+                <tr>
+                    <td>#1007</td>
+                    <td>Highlighter</td>
+                    <td>Stationery</td>
+                    <td style="color: green; font-weight: bold;">In Stock</td>
+                    <td>$3.99</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.querySelector('.table-container table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j]) {
+                        const cellText = cells[j].textContent || cells[j].innerText;
+                        if (cellText.toLowerCase().indexOf(filter) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+
+                rows[i].style.display = match ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

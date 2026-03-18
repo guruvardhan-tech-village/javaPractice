@@ -190,10 +190,10 @@ public class StudentReg extends javax.swing.JFrame {
             
             String gender="";
             if(maleRadiobtn.isSelected()){
-                gender = "Male";
+                gender = "Boy";
             }
             if(femaleRadiobtn.isSelected()){
-                gender = "Female";
+                gender = "Girl";
             }
             
             org.bson.Document doc = new org.bson.Document();

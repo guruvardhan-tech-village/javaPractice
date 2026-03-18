@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+
+        }
+        .controls{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        #searchInput{
+            flex-grow: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+        #searchInput:focus{
+            border-color: #67d0f0;
+        }
+        .table-container{
+            width: 100%;
+            max-height: 500px;
+            overflow: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: white;
+
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+        thead th{
+            position: sticky;
+            top: 0;
+            background-color: #333;
+            color: white;
+            z-index: 10;
+            cursor: pointer;
+            padding: 20px;
+            text-align: center;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+        thead th:hover{
+            background-color: #444;
+        }
+        thead th::after{
+            content: ' \2195';
+            font-size: 0.8em;
+            opacity: 0.5;
+        }
+        td{
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+            color: #333;
+        }
+        tbody tr:nth-child(even){
+            background-color: #f9f9f9;
+        }
+        tbody tr:hover{
+            background-color: #f1f1f1;
+            transition: 0.2s;
+        }
+        .status{
+            padding: 5px 10px; 
+            border-radius: 20px;            
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        .in-stock{
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .low-stock{
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .out-of-stock{
+            background-color: #f8d7da;
+            color: #7b1f28;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Ultimate Interactive Table</h2>
+    <p><small>Click headers to <b>sort</b> Use Box to <b>search</b></small></p>
+    
+    <div class="controls">
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search...">
+    </div><br>
+    <div class="table-container">
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">ItemID</th>
+                    <th onclick="sortTable(1)">ProductName</th>
+                    <th onclick="sortTable(2)">Category</th>
+                    <th onclick="sortTable(3)">Status</th>
+                    <th onclick="sortTable(4)">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#1001</td>
+                    <td>Pen</td>
+                    <td>Stationery</td>
+                    <td class=" status in-stock">In Stock</td>
+                    <td>$2.99</td>
+                </tr>
+                <tr>
+                    <td>#1002</td>
+                    <td>Pencil</td>
+                    <td>Stationery</td>
+                    <td class=" status out-of-stock">Out Of Stock</td>
+                    <td>$1.99</td>
+                </tr>
+                <tr>
+                    <td>#1003</td>
+                    <td>Eraser</td>
+                    <td>Stationery</td>
+                    <td class=" status out-of-stock">Out Of Stock</td>
+                    <td>$0.99</td>
+                </tr>
+                <tr>
+                    <td>#1004</td>
+                    <td>Notebook</td>
+                    <td>Stationery</td>
+                    <td class=" status in-stock">In Stock</td>
+                    <td>$5.99</td>
+                </tr>
+                <tr>
+                    <td>#1005</td>
+                    <td>Stapler</td>
+                    <td>Office Supplies</td>
+                    <td class=" status in-stock">In Stock</td>
+                    <td>$7.99</td>
+                </tr>
+                <tr>
+                    <td>#1006</td>
+                    <td>Paper Clips</td>
+                    <td>Office Supplies</td>
+                    <td class=" status out-of-stock">Out Of Stock</td>
+                    <td>$0.99</td>
+                </tr>
+                <tr>
+                    <td>#1007</td>
+                    <td>Highlighter</td>
+                    <td>Stationery</td>
+                    <td class=" status in-stock">In Stock</td>
+                    <td>$3.99</td>
+                </tr>
+                <tr>
+                    <td>#1008</td>
+                    <td>Marker</td>
+                    <td>Stationery</td>
+                    <td class=" status low-stock">Low Stock</td>
+                    <td>$4.99</td>
+                </tr>
+                <tr>
+                    <td>#1009</td>
+                    <td>Scissors</td>
+                    <td>Office Supplies</td>
+                    <td class=" status low-stock">Low Stock</td>
+                    <td>$6.99</td>
+                </tr>
+                <tr>
+                    <td>#1010</td>
+                    <td>Glue</td>
+                    <td>Office Supplies</td>
+                    <td class=" status in-stock">In Stock</td>
+                    <td>$3.49</td>
+                </tr>
+                <tr>
+                    <td>#1011</td>
+                    <td>Ruler</td>
+                    <td>Stationery</td>
+                    <td class=" status out-of-stock">Out Of Stock</td>
+                    <td>$1.49</td>
+                </tr>
+                <tr>
+                    <td>#1012</td>
+                    <td>Calculator</td>
+                    <td>Office Supplies</td>
+                    <td class=" status in-stock">In Stock</td>
+                    <td>$19.99</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.querySelector('.table-container table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j]) {
+                        const cellText = cells[j].textContent || cells[j].innerText;
+                        if (cellText.toLowerCase().indexOf(filter) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+
+                rows[i].style.display = match ? '' : 'none';
+            }
+        }
+        function sortTable(columnIndex) {
+            const table = document.getElementById('inventoryTable');
+            const rows = Array.from(table.rows).slice(1);
+            const isNumeric = !isNaN(rows[0].cells[columnIndex].innerText.trim().replace(/[^0-9.-]+/g,""));
+            const sortedRows = rows.sort((a, b) => {
+                let aText = a.cells[columnIndex].innerText.trim();
+                let bText = b.cells[columnIndex].innerText.trim();
+
+                if (isNumeric) {
+                    aText = parseFloat(aText.replace(/[^0-9.-]+/g,""));
+                    bText = parseFloat(bText.replace(/[^0-9.-]+/g,""));
+                }
+
+                return aText > bText ? 1 : -1;
+            });
+
+            sortedRows.forEach(row => table.appendChild(row));
+        }
+    </script>
+</body>
+</html>
