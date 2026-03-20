@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")  // This annotation indicates that this class is a MongoDB document and specifies the collection name as "users". When you save an instance of this class to the database, it will be stored in the "users" collection.
 public class User {
-    @Id  // This annotation indicates that the id field is the primary key for this document. When you save a User object to the database, MongoDB will automatically generate a unique identifier for this field if it is not already set.
+    @Id  //This annotation indicates that the id field is the primary key for this document. When you save a User object to the database, MongoDB will automatically generate a unique identifier for this field if it is not already set.
     private String id;
     private String name;
     private String email;
