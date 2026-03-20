@@ -1,16 +1,17 @@
 package com.bus.busbooking.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.bus.busbooking.model.User;
-import com.bus.busbooking.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bus.busbooking.service.UserService;
 
 
 @RestController         //tells to spring that this class is a controller and it will handle the incoming requests
@@ -49,17 +50,17 @@ public class Welcome {
     // }
     
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @PostMapping("/addUser")
     public String addUser(@RequestBody User user) {
-        userRepository.save(user);
+        userService.saveUser(user);
         return "User saved in DB";
     }
 
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
     
 
