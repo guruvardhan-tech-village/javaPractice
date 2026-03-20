@@ -5,9 +5,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.bus.busbooking.model.User;
+import com.bus.busbooking.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @RestController         //tells to spring that this class is a controller and it will handle the incoming requests
 
@@ -35,17 +39,30 @@ public class Welcome {
     //     return "User " + name + " added successfully";
     // }
 
+    // @PostMapping("/addUser")
+    // public String addUser(@RequestBody User user) {
+    //     userList.add(user);
+    //     return "User added successfully";
+    // }
+
+    // @GetMapping("/getAllUsers")
+    // public List<User> getAllUsers() {
+    //     return userList;
+    // }
+    
+    @Autowired
+    private UserRepository userRepository;
+
     @PostMapping("/addUser")
     public String addUser(@RequestBody User user) {
-        userList.add(user);
-        return "User added successfully";
+        userRepository.save(user);
+        return "User saved in DB";
     }
 
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
-        return userList;
+        return userRepository.findAll();
     }
-    
     
 
 }
