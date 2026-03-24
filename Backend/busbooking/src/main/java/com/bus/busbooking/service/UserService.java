@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bus.busbooking.model.User;
 import com.bus.busbooking.repository.UserRepository;
+import com.bus.busbooking.exception.UserNotFoundException;
 
 @Service
 public class UserService {
@@ -24,9 +25,13 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    public User getUserById(String id) {
-        return userRepository.findById(id).orElse(null);
+    // public User getUserById(String id) {
+    //     return userRepository.findById(id).orElse(null);
+    // }
+    public User getUserById(String id){
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
     }
+
     public String deleteUser(String id){
         userRepository.deleteById(id);
         return "User deleted Successfully";
