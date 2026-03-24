@@ -12,7 +12,6 @@ import com.bus.busbooking.dto.UserDTO;
 
 @Service
 public class UserService {
-
     @Autowired
     private UserRepository userRepository;
 
