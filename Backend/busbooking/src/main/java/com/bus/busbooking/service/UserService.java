@@ -24,4 +24,24 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+    public User getUserById(String id) {
+        return userRepository.findById(id).orElse(null);
+    }
+    public String deleteUser(String id){
+        userRepository.deleteById(id);
+        return "User deleted Successfully";
+    }
+
+    public String updateUser(String id, User user) {
+        User existingUser = userRepository.findById(id).orElse(null);
+        if (existingUser != null) {
+            existingUser.setName(user.getName());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setAge(user.getAge());
+            userRepository.save(existingUser);
+            return "User updated successfully";
+        } else {
+            return "User not found";
+        }
+    }
 }

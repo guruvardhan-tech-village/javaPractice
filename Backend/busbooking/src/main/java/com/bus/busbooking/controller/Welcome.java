@@ -1,11 +1,13 @@
 package com.bus.busbooking.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,11 +16,12 @@ import com.bus.busbooking.model.User;
 import com.bus.busbooking.service.UserService;
 
 
+
 @RestController         //tells to spring that this class is a controller and it will handle the incoming requests
 
 public class Welcome {
 
-    private List<User> userList = new ArrayList<>();
+    //private List<User> userList = new ArrayList<>();
 
     @GetMapping("/welcome")  //(@getmapping is used to handle GET requests) when user hits the /welcome endpoint, this method will be called and it will return the welcome message 
     public String welcome() {
@@ -62,6 +65,17 @@ public class Welcome {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+    @GetMapping("/getUser/{id}")
+    public User getUserById(@PathVariable String id) {
+        return userService.getUserById(id);
+    }
     
-
+    @DeleteMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable String id){
+        return userService.deleteUser(id);
+    }
+    @PutMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable String id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
 }
