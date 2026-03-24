@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+
+        }
+        .registerform{
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            max-width: 500px;
+        }
+        form{
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"]{
+            margin-bottom: 15px;
+            width: 95%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="file"]:focus{
+            border-color: #67d0f0;
+        }
+        input[type="submit"]{
+            background-color: #67d0f0;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 50%;
+        }
+        input[type="submit"]:hover{
+            transform: scale(1.05);
+            font-size: 20px;
+            color: black;
+            transition: 1.2s;
+            background-color: #0fa735;
+        }
+        label{
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="registerform">
+        <center><h2>Registration Form</h2></center>
+        <form action="/submit" method="post">
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" 
+            placeholder="Username" required autofocus>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <label for="age">Age (18-99)</label>
+            <input type="text" id="age" name="age" placeholder="Age" required>
+            <label for="uploadresume">Upload (PDF)</label>
+            <input type="file" id="uploadresume" name="resume" accept=".pdf" required>
+            <input type="text" value="ReadOnly" readonly>
+            <input type="text" value="Disabled" disabled>
+            <center><input type="submit" value="Submit"></center>
+        </form>
+    </div>
+
+</body>
+</html>
