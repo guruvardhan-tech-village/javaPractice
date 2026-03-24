@@ -63,14 +63,14 @@
 <body>
     <div class="form-side">
         <h2>Property Form</h2>
-        <form id="propertyForm">
+        <form id="demoForm">
             <div class="row">
-                <label for="propertyName">Property Name:</label>
-                <input type="text" id="propertyName" name="propertyName" required>
+                <label for="propertyName"> Name (required,maxlength)</label>
+                <input type="text" id="userName" name="userName" placeholder="Type here.." required maxlength="15">
             </div>
             <div class="row">
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" required>
+                <label >Range (min,max,step)</label>
+                <input type="range" id="range" name="volume" min="0" max="100" step="10" value="30">
             </div>
             <div class="row">
                 <label for="price">Price:</label>
