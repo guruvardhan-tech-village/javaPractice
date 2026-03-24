@@ -116,10 +116,11 @@
             `;
 
             // Loop through attributes
-            for (let attr of attributes) {
+            for(let i=0; i < attributes.length; i++) {
+                const attr = attributes[i];
                 displayHtml += `
-                    <div class="attr-item">
-                        <span class="highlight">${attr.name}</span> = "${attr.value}"
+                    <div class="attr-item">${attr.name}</div>
+                        <strong>${attr.name}:</strong> ${attr.value}
                     </div>
                 `;
             }
