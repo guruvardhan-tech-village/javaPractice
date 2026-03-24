@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bus.busbooking.model.User;
-import jakarta.validation.*;
 import com.bus.busbooking.service.UserService;
+import com.bus.busbooking.dto.UserDTO;
+import com.bus.busbooking.response.ApiResponse;
+
 
 
 
@@ -61,15 +63,29 @@ public class Welcome {
     //     userService.saveUser(user);
     //     return "User saved in DB";
     // }
+    // @PostMapping("/addUser")
+    // public String addUser(@Valid @RequestBody UserDTO userDTO) {
+    //     userService.saveUser(userDTO);
+    //     return "User saved in DB";
+    // }
     @PostMapping("/addUser")
-    public String addUser(@Valid @RequestBody User user) {
-        userService.saveUser(user);
-        return "User saved in DB";
+    public ApiResponse addUser(@Valid @RequestBody UserDTO userDTO) {
+        //TODO: process POST request
+        String msg = userService.saveUser(userDTO);
+        ApiResponse entity = new ApiResponse(msg, null);
+        
+        return entity;
     }
+    
+
+    // @GetMapping("/getAllUsers")
+    // public List<User> getAllUsers() {
+    //     return userService.getAllUsers();
+    // }
 
     @GetMapping("/getAllUsers")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public ApiResponse getAllUser(){
+        return new ApiResponse("User fetched",userService.getAllUsers());
     }
     @GetMapping("/getUser/{id}")
     public User getUserById(@PathVariable String id) {

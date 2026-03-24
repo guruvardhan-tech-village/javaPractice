@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bus.busbooking.model.User;
 import com.bus.busbooking.repository.UserRepository;
 import com.bus.busbooking.exception.UserNotFoundException;
+import com.bus.busbooking.dto.UserDTO;
 
 @Service
 public class UserService {
@@ -16,7 +17,12 @@ public class UserService {
     private UserRepository userRepository;
 
     // Save user
-    public String saveUser(User user) {
+    public String saveUser(UserDTO dto) {
+        User user = new User();
+        user.setName(dto.getName());
+        user.setEmail(dto.getEmail());
+        user.setAge(dto.getAge());
+
         userRepository.save(user);
         return "User saved in DB";
     }
