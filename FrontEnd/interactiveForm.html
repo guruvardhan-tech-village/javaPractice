@@ -58,6 +58,14 @@
             color: #fab1a0;
             font-weight: bold;
         }
+        input[type="submit"]:hover{
+            background-color: #00cec6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -73,19 +81,69 @@
                 <input type="range" id="range" name="volume" min="0" max="100" step="10" value="30">
             </div>
             <div class="row">
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" required min="0">
+                <label>Zip Code (Pattern)</label>
+                <input type="text" id="zip" name="zip" pattern="[0-9]{5}" placeholder="12345" required>
             </div>
             <div class="row">
-                <label for="bedrooms">Bedrooms:</label>
-                <input type="number" id="bedrooms" name="bedrooms" required min="0">
+                <label>File (Accept, multiple)</label>
+                <input type="file" id="files" name="upload" accept=".jpg,.png,.pdf" multiple>
             </div>
             <div class="row">
-                <label for="bathrooms">Bathrooms:</label>
-                <input type="number" id="bathrooms" name="bathrooms" required min="0">
+                <label><input type="checkbox" id="terms" name="terms" checked style="width: auto;" required> I agree to the terms and conditions</label>            
             </div>
             <input type="submit" value="Submit Property">
         </form>
+    </div>
+    <script>
+        const allInputs = document.querySelectorAll('input');
+        const logbox = document.getElementById('log');
+
+        // Show attributes when user interacts
+        allInputs.forEach(input => {
+            input.addEventListener('focus', syncAttributes);
+            input.addEventListener('input', syncAttributes);
+            input.addEventListener('change', syncAttributes);
+        });
+
+        function syncAttributes(event) {
+            const el = event.target;
+            const attributes = el.attributes;
+
+            let displayHtml = `
+                <strong>Target Element:</strong><br>
+                <span class="highlight">${el.name || 'Unnamed'}</span><br><br>
+                <strong>Attributes:</strong><br>
+            `;
+
+            // Loop through attributes
+            for (let attr of attributes) {
+                displayHtml += `
+                    <div class="attr-item">
+                        <span class="highlight">${attr.name}</span> = "${attr.value}"
+                    </div>
+                `;
+            }
+
+            // Show current value also
+            displayHtml += `
+                <br><strong>Current Value:</strong><br>
+                <span class="highlight">${el.value}</span>
+            `;
+
+            logbox.innerHTML = displayHtml;
+        }
+
+        // Handle form submit
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            logbox.innerHTML = `
+                <h3 style="color:#55efc4;">✅ Form Submitted Successfully!</h3>
+            `;
+        });
+    </script>
+    <div class="monitor-side" id="log">
+        <h3>Interact with the form to see attributes here...</h3>
     </div>
 </body>
 </html>
