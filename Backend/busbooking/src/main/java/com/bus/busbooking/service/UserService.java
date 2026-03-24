@@ -14,7 +14,6 @@ import com.bus.busbooking.dto.UserDTO;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-
     // Save user
     public String saveUser(UserDTO dto) {
         User user = new User();
@@ -25,7 +24,6 @@ public class UserService {
         userRepository.save(user);
         return "User saved in DB";
     }
-
     // Get all users
     public List<User> getAllUsers() {
         return userRepository.findAll();
