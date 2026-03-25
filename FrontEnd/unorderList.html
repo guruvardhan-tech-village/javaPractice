@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .input-group {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        #itemInput {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+        }
+        #addButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        #addButton:hover {
+            background-color: #218838;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .deleteBtn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .deleteBtn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>My Smart List</h2>
+        <div class="input-group">
+            <input type="text" id="itemInput" placeholder="Add a new task..">
+            <button id="addButton">Add</button>
+        </div>
+        <ul id="taskList">
+            <li>Learn JavaScript <button class="deleteBtn">Delete</button></li>
+            <li>Build a project <button class="deleteBtn">Delete</button></li>
+            <li>Read a book <button class="deleteBtn">Delete</button></li>
+        </ul>
+    </div>
+    <script>
+        const addButton = document.getElementById('addButton');
+        const itemInput = document.getElementById('itemInput');
+        const taskList = document.getElementById('taskList');
+
+        addButton.addEventListener('click', () => {
+            const newItemText = itemInput.value.trim();
+            if (newItemText) {
+                const newItem = document.createElement('li');
+                newItem.innerHTML = `${newItemText} <button class="deleteBtn">Delete</button>`;
+                taskList.appendChild(newItem);
+                itemInput.value = '';
+            }
+        });
+
+        taskList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('deleteBtn')) {
+                e.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>
