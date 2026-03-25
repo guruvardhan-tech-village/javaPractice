@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
+        *{
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            padding: 20px;
+            padding: 0px;
+            margin: 0px;
         }
         .navbar {
             display: flex;
@@ -16,7 +17,7 @@
             align-items: center;
             background-color: #333;
             padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 0px;
         }
         .navbar a {
             color: white;
@@ -24,7 +25,7 @@
             margin-left: 15px;
             font-size: 16px;
         }
-        .navbar a:hover {
+        .navbar ul a:hover {
             text-decoration: underline;
         }
         .logo {
@@ -33,18 +34,26 @@
             text-decoration: none;
             color: #00cec6;
         }
+        .logo:hover {
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="#" class="logo">MySite</a>
-        <div>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-        </div>
+        <a href="index.html" class="logo">MyBrand</a>
+        <ul>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </ul>
     </nav>
-
+    <div style="padding: 20px;">
+        <h1>Welcome to MyBrand</h1>
+        <p>This is a simple navigation bar example. You can customize the links and styles as needed.</p>
+    </div>
 </body>
 </html>
