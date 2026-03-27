@@ -1,7 +1,5 @@
 package com.bus.busbooking.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bus.busbooking.model.User;
-import com.bus.busbooking.service.UserService;
 import com.bus.busbooking.dto.UserDTO;
+import com.bus.busbooking.model.User;
 import com.bus.busbooking.response.ApiResponse;
+import com.bus.busbooking.service.UserService;
+
+import jakarta.validation.Valid;
 
 
 

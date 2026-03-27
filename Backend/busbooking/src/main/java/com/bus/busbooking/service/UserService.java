@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bus.busbooking.dto.UserDTO;
+import com.bus.busbooking.exception.UserNotFoundException;
 import com.bus.busbooking.model.User;
 import com.bus.busbooking.repository.UserRepository;
-import com.bus.busbooking.exception.UserNotFoundException;
-import com.bus.busbooking.dto.UserDTO;
 
 @Service
 public class UserService {
@@ -36,20 +36,17 @@ public class UserService {
     }
 
     public String deleteUser(String id){
+        userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
         userRepository.deleteById(id);
         return "User deleted Successfully";
     }
 
     public String updateUser(String id, User user) {
-        User existingUser = userRepository.findById(id).orElse(null);
-        if (existingUser != null) {
-            existingUser.setName(user.getName());
-            existingUser.setEmail(user.getEmail());
-            existingUser.setAge(user.getAge());
-            userRepository.save(existingUser);
-            return "User updated successfully";
-        } else {
-            return "User not found";
-        }
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
+        existingUser.setName(user.getName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setAge(user.getAge());
+        userRepository.save(existingUser);
+        return "User updated successfully";
     }
 }
