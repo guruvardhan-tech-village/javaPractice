@@ -5,10 +5,10 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 public class UserDTO {
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Name is mandatory")// Name should not be blank
     private String name;
 
-    @Email(message = "Email should be valid")
+    @Email(message = "Email should be valid") // Email validation
     private String email;
 
     @Min(value = 18)
