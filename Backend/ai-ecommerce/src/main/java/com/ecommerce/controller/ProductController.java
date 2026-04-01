@@ -12,6 +12,8 @@ import com.ecommerce.service.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -33,6 +35,17 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
-    
+    @GetMapping("/category")
+    public List<Product> getProductsByCategory(@RequestParam String category) {
+        return productService.getProductsByCategory(category);
+    }
+    @GetMapping("/priceRange")
+    public List<Product> getProductsByPriceRange(@RequestParam Double min, @RequestParam Double max) {
+        return productService.getProductsByPriceRange(min, max);
+    }
+    @GetMapping("/companyName")
+    public List<Product> getProductsByCompanyName(@RequestParam String companyName) {
+        return productService.getProductsByCompanyName(companyName);
+    }
 
 }

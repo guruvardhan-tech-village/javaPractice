@@ -12,17 +12,19 @@ public class Product {
     private String description;
     private double price;
     private String category;
+    private String companyName;
 
     public Product(){
 
     }
-    public Product(String name, String description, String price, String category) {
+    public Product(String name, String description, String price, String category, String companyName) {
         
         this.name = name;
         this.description = description;
         this.price = Double.parseDouble(price);
         this.category = category;
-        
+        this.companyName = companyName;
+
     }
 
     public String getId() {
@@ -55,6 +57,12 @@ public class Product {
     }
     public void setCategory(String category) {
         this.category = category;
+    }
+    public String getCompanyName() {
+        return companyName;
+    }
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
 }

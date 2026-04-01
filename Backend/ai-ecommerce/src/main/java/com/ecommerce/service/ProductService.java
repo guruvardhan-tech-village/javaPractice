@@ -21,4 +21,14 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+    public List<Product> getProductsByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+    public List<Product> getProductsByPriceRange(Double min, Double max) {
+        return productRepository.findByPriceBetween(min, max);
+    }
+    public List<Product> getProductsByCompanyName(String companyName) {
+        return productRepository.findByCompanyName(companyName);
+    }
+
 }
