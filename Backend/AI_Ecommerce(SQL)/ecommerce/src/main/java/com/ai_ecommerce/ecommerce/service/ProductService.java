@@ -16,7 +16,11 @@ public class ProductService {
 
     public String addProducts(Products products){
         productRepository.save(products);
-        return "Product added successfully";
+        return "Product added successfully\n"+ 
+        "Name: "+products.getName()+
+        "\tDescription: "+products.getDescription()+
+        "\tPrice: "+products.getPrice()+
+        "\tCompany Name: "+products.getCompanyName();
     }
 
     public List<Products> getAllProducts() {
