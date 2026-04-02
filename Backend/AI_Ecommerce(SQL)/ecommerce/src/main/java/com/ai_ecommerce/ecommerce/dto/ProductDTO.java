@@ -1,46 +1,24 @@
-package com.ai_ecommerce.ecommerce.model;
+package com.ai_ecommerce.ecommerce.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.*;
 
-@Entity
-@Table(name = "products")
-public class Products {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ProductDTO {
 
+    @NotBlank(message = "Name is required")
     private String name;
+    @NotBlank(message = "Description is required")
     private String description;
+    @Min(value = 1, message = "Price must be greater than Zero")
     private Double price;
+    @NotBlank(message = "Company Name is required")
     private String companyName;
+    @NotBlank(message = "Category is required")
     private String category;
+    @NotBlank(message = "Status is required")
     private String status;
+    @Min(value = 0, message = "Quantity must have value greater than or equal to zero")
     private int quantity;
 
-    public Products() {
-    }
-
-    public Products(String name, String description, Double price, String companyName, String category,String status, int quantity) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.companyName = companyName;
-        this.category = category;
-        this.status = status;
-        this.quantity = quantity;
-        
-    }
-    
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
     public String getName() {
         return name;
     }
