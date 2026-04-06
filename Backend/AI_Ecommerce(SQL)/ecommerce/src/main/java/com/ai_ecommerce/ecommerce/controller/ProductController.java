@@ -94,4 +94,12 @@ public class ProductController {
             200
         );
     }
+    @GetMapping("/suggest")
+    public ApiResponse getSuggestions(@RequestParam String keyword) {
+        return new ApiResponse(
+            "Suggestions",
+            productService.getSuggestions(keyword),
+            200
+        );
+    }
 }
