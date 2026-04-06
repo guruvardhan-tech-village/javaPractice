@@ -85,7 +85,7 @@ public class ProductService {
         return productRepository.findByNameContainingIgnoreCase(name);
     }
     public List<Products> recommendProducts(String category) {
-        return productRepository.findByCategoryName(category);
+        return productRepository.findByCategory(category);
     }
     
     public List<String> getSuggestions(String keyword) {
