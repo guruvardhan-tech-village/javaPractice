@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ai_ecommerce.ecommerce.dto.ProductDTO;
 import com.ai_ecommerce.ecommerce.model.Products;
 import com.ai_ecommerce.ecommerce.response.ApiResponse;
+import com.ai_ecommerce.ecommerce.service.AISearchService;
 import com.ai_ecommerce.ecommerce.service.ProductService;
 
 import jakarta.validation.Valid;
@@ -26,8 +27,11 @@ public class ProductController {
     
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    private final AISearchService aiSearchService;
+
+    public ProductController(ProductService productService, AISearchService aiSearchService) {
         this.productService = productService;
+        this.aiSearchService = aiSearchService;
     }
     @PostMapping
     public ApiResponse addProduct(@Valid @RequestBody ProductDTO dto){
@@ -39,6 +43,14 @@ public class ProductController {
     // public String addProduct(@Valid @RequestBody ProductDTO dto){
     //     return productService.addProducts(dto);
     // }
+
+    @PostMapping("/bulk")
+    public ApiResponse addProducts(@RequestBody List<ProductDTO> dtos) {
+
+        dtos.forEach(productService::addProducts);
+
+        return new ApiResponse("Bulk products added", dtos.size(), 201);
+    }
 
     // @GetMapping("/getAllProducts")
     // public List<Products> getAllproducts(){
@@ -99,6 +111,14 @@ public class ProductController {
         return new ApiResponse(
             "Suggestions",
             productService.getSuggestions(keyword),
+            200
+        );
+    }
+    @GetMapping("/ai-search")
+    public ApiResponse aiSearch(@RequestParam String query) {
+        return new ApiResponse(
+            "AI search results",
+            aiSearchService.smartSearch(query),
             200
         );
     }
