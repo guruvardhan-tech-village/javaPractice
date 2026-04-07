@@ -90,11 +90,27 @@ public class ProductService {
     
     public List<String> getSuggestions(String keyword) {
 
+        String lowerKeyword = keyword.toLowerCase();
+
+        // 🔥 Smart mapping
+        if (lowerKeyword.equals("ph")) lowerKeyword = "phone";
+
+        final String finalLowerKeyword = lowerKeyword;
         return productRepository.findAll()
             .stream()
-            .map(p -> List.of(p.getName(), p.getCategory(), p.getCompanyName()))
+            .map(p -> List.of(
+                p.getName(),
+                p.getCategory(),
+                p.getCompanyName()
+            ))
             .flatMap(List::stream)
+            .filter(text -> text != null && text.toLowerCase().contains(finalLowerKeyword))
             .distinct()
+            .sorted((a, b) -> {
+                boolean aStarts = a.toLowerCase().startsWith(finalLowerKeyword);
+                boolean bStarts = b.toLowerCase().startsWith(finalLowerKeyword);
+                return Boolean.compare(bStarts, aStarts);
+            })
             .limit(5)
             .toList();
     }

@@ -60,7 +60,8 @@ public class AISearchService {
             .stream()
             .filter(p -> {
 
-                boolean matchesKeyword = keywords.isEmpty() || keywords.stream().anyMatch(k ->
+                boolean matchesKeyword = keywords.isEmpty() || keywords.stream()
+                .allMatch(k -> 
                     p.getName().toLowerCase().contains(k) ||
                     p.getCategory().toLowerCase().contains(k) ||
                     p.getCompanyName().toLowerCase().contains(k)
