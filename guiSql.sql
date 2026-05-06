@@ -6,4 +6,4 @@ add column Subjects varchar(20);
 
 describe student;
 
-create database ai_ecommerce;
+
